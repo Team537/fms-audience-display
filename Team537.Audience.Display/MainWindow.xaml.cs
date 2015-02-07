@@ -22,10 +22,15 @@ namespace Team537.Audience.Display
     public partial class MainWindow : Window
     {
         private MainWindowViewModel viewModel;
+        private FmsListener fmsListener;
 
         public MainWindow()
         {
             InitializeComponent();
+            viewModel = new MainWindowViewModel();
+            fmsListener = new FmsListener();
+
+            this.DataContext = viewModel;
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -42,8 +47,17 @@ namespace Team537.Audience.Display
                     WindowState = WindowState.Normal;
                     ResizeMode = ResizeMode.CanResizeWithGrip;
                     break;
-            }
-            
+            }            
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            fmsListener.Start(this.viewModel);
+        }
+
+        private void Window_Unloaded(object sender, RoutedEventArgs e)
+        {
+            fmsListener.Stop();
         }
     }
 }
