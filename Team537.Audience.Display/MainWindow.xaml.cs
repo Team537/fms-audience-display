@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Team537.Audience.Display.ViewModel;
 
 namespace Team537.Audience.Display
 {
@@ -20,9 +21,29 @@ namespace Team537.Audience.Display
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainWindowViewModel viewModel;
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.F11:
+                    WindowStyle = WindowStyle.None;
+                    WindowState = WindowState.Maximized;
+                    ResizeMode = ResizeMode.NoResize;
+                    break;
+                case Key.Escape:
+                    WindowStyle = WindowStyle.SingleBorderWindow;
+                    WindowState = WindowState.Normal;
+                    ResizeMode = ResizeMode.CanResizeWithGrip;
+                    break;
+            }
+            
         }
     }
 }

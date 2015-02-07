@@ -1,8 +1,101 @@
 ﻿<Window x:Class="Team537.Audience.Display.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="FMS Audience Display - F11 to Maximize" 
+        Width="1280" 
+        Height="720" 
+        KeyDown="Window_KeyDown"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignData Source=/SampleData/MainWindowSampleData.xaml}">
+    <Window.Resources>
+        <SolidColorBrush x:Key="RedBackground" Color="Red" />
+        <SolidColorBrush x:Key="BlueBackground" Color="Blue" />
         
+        <Style TargetType="TextBlock" x:Key="TeamFont">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="24" />
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="ScoreFont">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="60" />
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="MatchFont">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="40" />
+        </Style>
+    </Window.Resources>
+    
+    <Grid>        
+        <Border Background="#00FF00" />
+        
+        <Grid VerticalAlignment="Bottom" Height="150" Margin="150, 50">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Border Background="SlateGray" Grid.Row="0" Grid.ColumnSpan="5" BorderBrush="White" BorderThickness="0,0,0,2" Padding="0">
+                <Grid>
+                    <ProgressBar Minimum="0" Maximum="{Binding TotalTime}" Value="{Binding TimeValue, Mode=OneWay}" Background="Transparent" Foreground="Purple" />
+                    <TextBlock TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource TeamFont}" Text="{Binding TimeLeft}" />
+                </Grid>
+            </Border>
+
+            <Border Background="{StaticResource RedBackground}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3">
+                <TextBlock Text="{Binding RedScore}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource ScoreFont}" />
+            </Border>
+
+            <Border Background="SlateGray" Grid.Column="2" Grid.RowSpan="3" Grid.Row="1" BorderBrush="White" BorderThickness="2,0,2,0">
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Match" TextAlignment="Center" Style="{StaticResource MatchFont}" />
+                    <TextBlock Text="{Binding MatchNumber}" TextAlignment="Center" Style="{StaticResource MatchFont}" />
+                </StackPanel>
+            </Border>
+
+            <Border Background="{StaticResource BlueBackground}" Grid.Column="3" Grid.Row="1" Grid.RowSpan="3">
+                <TextBlock Text="{Binding BlueScore}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource ScoreFont}" />                
+            </Border>
+
+            <Border Background="{StaticResource RedBackground}" Grid.Column="0" Grid.Row="1" Padding="10,0" BorderBrush="White" BorderThickness="0,0,2,0">
+                <TextBlock VerticalAlignment="Center" Text="{Binding Red1}" Style="{StaticResource TeamFont}" TextAlignment="Left" />
+            </Border>
+
+            <Border Background="{StaticResource RedBackground}" Grid.Column="0" Grid.Row="2" Padding="10,0" BorderBrush="White" BorderThickness="0,2,2,2">
+                <TextBlock VerticalAlignment="Center" Text="{Binding Red2}" Style="{StaticResource TeamFont}" TextAlignment="Left" />
+            </Border>
+
+            <Border Background="{StaticResource RedBackground}" Grid.Column="0" Grid.Row="3" Padding="10,0" BorderBrush="White" BorderThickness="0,0,2,0">
+                <TextBlock VerticalAlignment="Center" Text="{Binding Red3}" Style="{StaticResource TeamFont}" TextAlignment="Left" />
+            </Border>
+
+            <Border Background="{StaticResource BlueBackground}" Grid.Column="4" Grid.Row="1" Padding="10,0" BorderBrush="White" BorderThickness="2,0,0,0">
+                <TextBlock VerticalAlignment="Center" Text="{Binding Blue1}" Style="{StaticResource TeamFont}" TextAlignment="Right" />
+            </Border>
+
+            <Border Background="{StaticResource BlueBackground}" Grid.Column="4" Grid.Row="2" Padding="10,0" BorderBrush="White" BorderThickness="2,2,0,2">
+                <TextBlock VerticalAlignment="Center" Text="{Binding Blue2}" Style="{StaticResource TeamFont}" TextAlignment="Right" />
+            </Border>
+
+            <Border Background="{StaticResource BlueBackground}" Grid.Column="4" Grid.Row="3" Padding="10,0" BorderBrush="White" BorderThickness="2,0,0,0">
+                <TextBlock VerticalAlignment="Center" Text="{Binding Blue3}" Style="{StaticResource TeamFont}" TextAlignment="Right" />
+            </Border>
+        </Grid>
     </Grid>
 </Window>

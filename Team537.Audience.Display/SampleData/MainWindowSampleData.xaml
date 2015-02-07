@@ -1,0 +1,17 @@
+﻿<vm:MainWindowViewModel xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:vm="clr-namespace:Team537.Audience.Display.ViewModel"
+                        Red1="537"
+                        Red2="269"
+                        Red3="111"
+                        RedScore="35"
+                        Blue1="81"
+                        Blue2="2353"
+                        Blue3="1234"
+                        BlueScore="55"
+                        TimeLeft="110"
+                        TotalTime="120"
+                        MatchNumber="60"
+                        >
+    
+</vm:MainWindowViewModel>
