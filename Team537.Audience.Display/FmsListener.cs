@@ -8,6 +8,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Team537.Audience.Display.DataModel;
 using Team537.Audience.Display.ViewModel;
 
 namespace Team537.Audience.Display
@@ -130,6 +131,17 @@ namespace Team537.Audience.Display
 
                         case "time":
                             viewModel.TimeLeft = intParameter;
+                            
+                            if (viewModel.TimeLeft == 30)
+                            {
+                                viewModel.PlaySound(SoundEffect.Warning1);
+                            }
+
+                            if (viewModel.TimeLeft == 10)
+                            {
+                                viewModel.PlaySound(SoundEffect.Warning2);
+                            }
+
                             break;
 
                         case "total-time":
@@ -138,18 +150,36 @@ namespace Team537.Audience.Display
 
                         case "auto-start":
                             // play noise
+                            viewModel.PlaySound(SoundEffect.StartAuto);
                             break;
 
                         case "auto-end":
                             // play noise
                             break;
 
+                        case "w1":
+                            // play noise
+                            viewModel.PlaySound(SoundEffect.Warning1);
+                            break;
+
+                        case "w2":
+                            // play noise
+                            viewModel.PlaySound(SoundEffect.Warning2);
+                            break;
+
                         case "tele-start":
                             // play noise
+                            viewModel.PlaySound(SoundEffect.StartTele);
                             break;
 
                         case "tele-end":
                             // play noise
+                            viewModel.PlaySound(SoundEffect.EndMatch);
+                            break;
+
+                        case "abort-match":
+                            // play noise
+                            viewModel.PlaySound(SoundEffect.CancelMatch);
                             break;
                     }
                 }

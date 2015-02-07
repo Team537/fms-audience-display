@@ -3,11 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Team537.Audience.Display.DataModel;
 
 namespace Team537.Audience.Display.ViewModel
 {
+    public delegate void PlaySoundEventHandler(object sender, PlaySoundEventArgs e);
+
+    public class PlaySoundEventArgs : EventArgs
+    {
+        public SoundEffect SoundEffect { get; set; }
+    }
+
     public class MainWindowViewModel : BindableObject
     {
+        public event PlaySoundEventHandler PlaySoundHandler;
+
+        public void PlaySound(SoundEffect sound)
+        {
+            if (PlaySoundHandler != null)
+            {
+                var eventArgs = new PlaySoundEventArgs() { SoundEffect = sound };
+                PlaySoundHandler(this, eventArgs);
+            }
+        }
+
         private int matchNumber;
         private int totalTime;
         private int timeLeft;

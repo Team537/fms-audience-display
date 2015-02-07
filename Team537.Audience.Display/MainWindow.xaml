@@ -29,11 +29,11 @@
 
         <Style TargetType="TextBlock" x:Key="MatchFont">
             <Setter Property="Foreground" Value="White" />
-            <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="FontSize" Value="40" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="FontSize" Value="24" />
         </Style>
     </Window.Resources>
-    
+
     <Grid>        
         <Border Background="#00FF00" />
         
@@ -65,10 +65,10 @@
             </Border>
 
             <Border Background="SlateGray" Grid.Column="2" Grid.RowSpan="3" Grid.Row="1" BorderBrush="White" BorderThickness="2,0,2,0">
-                <StackPanel VerticalAlignment="Center">
-                    <TextBlock Text="Match" TextAlignment="Center" Style="{StaticResource MatchFont}" />
-                    <TextBlock Text="{Binding MatchNumber}" TextAlignment="Center" Style="{StaticResource MatchFont}" />
-                </StackPanel>
+                <Grid>
+                    <TextBlock Text="Match" TextAlignment="Center" VerticalAlignment="Top" Style="{StaticResource MatchFont}" />
+                    <TextBlock Text="{Binding MatchNumber}" TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ScoreFont}" />
+                </Grid>
             </Border>
 
             <Border Background="{StaticResource BlueBackground}" Grid.Column="3" Grid.Row="1" Grid.RowSpan="3">
