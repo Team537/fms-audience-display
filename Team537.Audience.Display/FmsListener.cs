@@ -60,10 +60,18 @@ namespace Team537.Audience.Display
             // Receive until client closes connection, indicated by 0 return value
             var streamReader = new StreamReader(client.GetStream());
             string line;
-            while ((line = streamReader.ReadLine()) != null)
+
+            try
             {
-                Debug.WriteLine("Received: {0}{1}", line, "t");
-                commandHandler.SendCommand(line);
+                while ((line = streamReader.ReadLine()) != null)
+                {
+                    Debug.WriteLine("Received: {0}{1}", line, "t");
+                    commandHandler.SendCommand(line);
+                }
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
             }
 
             Debug.WriteLine("Client disconnected");
